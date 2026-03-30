@@ -53,7 +53,7 @@ If you use this framework in a scientific publication, we would appreciate a cit
 }
 ```
 
-This project is built on top of the [Qsun](https://github.com/tungduy1704/Quantum_Simulation_Using_NumPy_array) quantum computing library:
+This project is built on top of the [Qsun](https://github.com/ChuongQuoc1413017/Quantum_Virtual_Machine.git) quantum computing library:
 
 ```
 @article{Nguyen_2022,
