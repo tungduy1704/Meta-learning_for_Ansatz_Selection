@@ -4,7 +4,7 @@ A meta-learning framework that recommends the optimal quantum encoding ansatz fo
 
 ## Workflow
 
-![Framework Workflow](./images/Workflow.pdf)
+![Framework Workflow](./images/Workflow.png)
 ## Project Structure
 
 ```
