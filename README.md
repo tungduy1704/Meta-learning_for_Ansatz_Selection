@@ -22,7 +22,7 @@ The system supports two recommendation protocols (**LOOCV** and **Majority Votin
 
 ## Framework
 
-![Framework Overview](./images/scheme.pdf)
+![Framework Overview](./images/scheme.png)
 
 ```
 Panel (a) — Meta-Dataset Construction
