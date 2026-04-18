@@ -16,7 +16,7 @@ This framework addresses the problem as a **supervised meta-learning task**:
 2. A classical meta-learner is trained on this meta-dataset to map complexity metrics to circuit recommendations.
 3. At inference time, the trained model predicts the optimal encoding circuit for a new dataset using only classical feature extraction — no quantum evaluation is required.
 
-The system supports two recommendation protocols (**Leave-One-Out Cross-Validation** and **Majority Voting**) and four configurations.
+The system supports two recommendation protocols (**Leave-One-Out Cross-Validation** and **Majority Voting**) with four configurations.
 
 ---
 
