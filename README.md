@@ -1,4 +1,4 @@
-# Towards Automated Selection of Quantum Encoding Circuits via Meta-Learning
+# Meta-learning for Quantum Circuits Selection
 
 A meta-learning framework that automatically recommends the most suitable quantum encoding circuit (ansatz) for binary classification datasets, eliminating the need for exhaustive quantum kernel evaluation at inference time.
 
