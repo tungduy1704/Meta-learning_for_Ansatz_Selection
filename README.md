@@ -57,7 +57,7 @@ Meta-learning for Encoding Circuit Selection/
 │   ├── Qdata.py                     # Complexity metrics: intrinsic_dim, C(D)
 │
 ├── datasets/
-│   ├── load_data.py                 # ExtendedDatasetLoader + DatasetPreprocessor
+│   ├── load_data.py                 # Dataset loading and preprocessing utilitie
 │   └── *.csv                        # Real-world benchmark datasets
 │
 ├── src/
@@ -65,13 +65,14 @@ Meta-learning for Encoding Circuit Selection/
 │   └── kernel_evaluation.py         # SVC, GPC, KRC with precomputed quantum kernels
 │
 ├── results/
-│   ├── *.csv                        # Kernel accuracy results and complexity metrics
+│   ├── *.csv                        # Experiment outputs
 │   └── plots/                       # Result figures
+│   └── plotting.ipynb               # Result visualizations
 │
 ├── [1] Quantum_Learning.ipynb       # Step 1: kernel evaluation + metric extraction
 ├── [2] Majority_Voting.ipynb        # Step 2a: ensemble recommendation
 ├── [2] LOOCV.ipynb                  # Step 2b: leave-one-out recommendation
-└── plotting.ipynb                   # Result visualizations
+
 ```
 
 ---
