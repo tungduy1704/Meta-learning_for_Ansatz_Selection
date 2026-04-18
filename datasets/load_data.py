@@ -21,7 +21,6 @@ class DatasetInfo:
     category: str       # 'synthetic' or 'real-world'
     difficulty: str      # 'easy', 'medium', 'hard'
 
-
 def make_xor(n_samples=100, noise=0.0, random_state=None):
     rng = np.random.RandomState(random_state)
     n_per_quadrant = n_samples // 4
@@ -38,7 +37,6 @@ def make_xor(n_samples=100, noise=0.0, random_state=None):
         X += rng.randn(*X.shape) * noise
 
     return X, y
-
 
 def make_spiral(n_samples=100, noise=0.0, n_classes=2, random_state=None):
     rng = np.random.RandomState(random_state)
@@ -61,7 +59,6 @@ def make_spiral(n_samples=100, noise=0.0, n_classes=2, random_state=None):
 
     return X, y
 
-
 def make_checkerboard(n_samples=100, grid_size=2, noise=0.0, random_state=None):
     rng = np.random.RandomState(random_state)
 
@@ -72,7 +69,6 @@ def make_checkerboard(n_samples=100, grid_size=2, noise=0.0, random_state=None):
         X += rng.randn(*X.shape) * noise
 
     return X, y
-
 
 def make_concentric_rings(n_samples=100, n_rings=3, noise=0.1, random_state=None):
     rng = np.random.RandomState(random_state)
@@ -95,7 +91,6 @@ def make_concentric_rings(n_samples=100, n_rings=3, noise=0.1, random_state=None
 
     return X, y
 
-
 class ExtendedDatasetLoader:
 
     def __init__(self, data_dir=None, random_state=42):
@@ -115,7 +110,6 @@ class ExtendedDatasetLoader:
             category=category,
             difficulty=difficulty
         )
-
 
     def load_blobs_easy(self, n_samples=100, n_features=2, centers=2, cluster_std=0.5):
         X, y = make_blobs(n_samples=n_samples, n_features=n_features,
@@ -215,7 +209,7 @@ class ExtendedDatasetLoader:
         filepath = self.data_dir / filename
         if not filepath.exists():
             raise FileNotFoundError(f"File not found: {filepath}")
-        data = pd.read_csv(filepath)
+        data = pd.read_csv(filepath, header=None)
         X = data.iloc[:, :-1].values
         y = data.iloc[:, -1].values
         self._add_dataset("Pima", X, y, category='real-world', difficulty='hard')
@@ -235,7 +229,7 @@ class ExtendedDatasetLoader:
         filepath = self.data_dir / filename
         if not filepath.exists():
             raise FileNotFoundError(f"File not found: {filepath}")
-        data = pd.read_csv(filepath)
+        data = pd.read_csv(filepath, header=None)
         X = data.iloc[:, :-1].values
         y = data.iloc[:, -1].values
         if y.min() == 1:
@@ -252,7 +246,7 @@ class ExtendedDatasetLoader:
             print("LOADING DATASETS")
             print("=" * 60)
 
-        # ── 1.1 Blobs Easy ──
+        # ── Simple Blobs ──
         loaded, skipped = 0, 0
         blobs_easy_configs = [
             (2, 2), (2, 3), (2, 4),
@@ -270,7 +264,7 @@ class ExtendedDatasetLoader:
         if verbose:
             print(f"  Blobs Easy      : {loaded} loaded, {skipped} skipped")
 
-        # ── 1.2 Blobs Hard ──
+        # ── Complex Blobs──
         loaded, skipped = 0, 0
         blobs_hard_configs = [
             (2, 2, 1.5), (2, 2, 2.0),
@@ -289,7 +283,7 @@ class ExtendedDatasetLoader:
         if verbose:
             print(f"  Blobs Hard      : {loaded} loaded, {skipped} skipped")
 
-        # ── 1.3 Circles ──
+        # ── Circles ──
         loaded, skipped = 0, 0
         circle_configs = [
             (0.05, 0.3), (0.05, 0.5),
@@ -307,7 +301,7 @@ class ExtendedDatasetLoader:
         if verbose:
             print(f"  Circles         : {loaded} loaded, {skipped} skipped")
 
-        # ── 1.4 Moons ──
+        # ── Moons ──
         loaded, skipped = 0, 0
         for noise in [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35]:
             for n_samples in sample_sizes:
@@ -319,7 +313,7 @@ class ExtendedDatasetLoader:
         if verbose:
             print(f"  Moons           : {loaded} loaded, {skipped} skipped")
 
-        # ── 1.5 Concentric Rings ──
+        # ── Concentric Rings ──
         loaded, skipped = 0, 0
         rings_configs = [
             (3, 0.05), (3, 0.10), (3, 0.20),
@@ -336,7 +330,7 @@ class ExtendedDatasetLoader:
         if verbose:
             print(f"  Concentric Rings: {loaded} loaded, {skipped} skipped")
 
-        # ── 1.6 XOR ──
+        # ── XOR ──
         loaded, skipped = 0, 0
         for noise in [0.0, 0.05, 0.10, 0.15, 0.20, 0.25]:
             for n_samples in sample_sizes:
@@ -348,7 +342,7 @@ class ExtendedDatasetLoader:
         if verbose:
             print(f"  XOR             : {loaded} loaded, {skipped} skipped")
 
-        # ── 1.7 Spiral ──
+        # ── Spiral ──
         loaded, skipped = 0, 0
         for noise in [0.0, 0.05, 0.10, 0.15, 0.20, 0.25]:
             for n_samples in sample_sizes:
@@ -360,7 +354,7 @@ class ExtendedDatasetLoader:
         if verbose:
             print(f"  Spiral          : {loaded} loaded, {skipped} skipped")
 
-        # ── 1.8 Checkerboard ──
+        # ── Checkerboard ──
         loaded, skipped = 0, 0
         checkerboard_configs = [
             (2, 0.0), (2, 0.05), (2, 0.10),
@@ -378,7 +372,7 @@ class ExtendedDatasetLoader:
         if verbose:
             print(f"  Checkerboard    : {loaded} loaded, {skipped} skipped")
 
-        # ── 2. Real-World Datasets ──
+        # ── Real-World Datasets ──
         if verbose:
             print()
         loaded, skipped = 0, 0
@@ -409,7 +403,7 @@ class ExtendedDatasetLoader:
         if verbose:
             print(f"  Real-World      : {loaded} loaded, {skipped} skipped")
 
-        # ── 2.1 Real-World Subsamples ──
+        # ── Real-World Subsamples ──
         loaded, skipped = 0, 0
         real_world_subsamples = ['BreastCancer', 'Pima', 'Banknote', 'Haberman', 'Wine', 'Iris']
         for ds_name in real_world_subsamples:
